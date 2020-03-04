@@ -1,0 +1,10 @@
+# pho-graphql-v1
+
+type Message implements MentionEdge 
+@nodes(tail:"User", head:"User")
+@properties(binding: false, persistent: true, consumer: false, multiplicable: true)
+@labels(headSingular:"message", headPlural: "messages", tailSingular: "message", tailPlural: "messages")
+{
+    id: ID!
+    seen: Boolean @default(Boolean: false)
+}
