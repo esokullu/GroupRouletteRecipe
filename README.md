@@ -1,15 +1,25 @@
-## Real World Example
+## GroupRoulette Recipe
 
-This is a simple graph for a Twitter clone, in its most fundamental form.
+This is a very simple recipe for Pho Networks.
 
-There are three nodes:
-1. **Graph**, a Graph (obligatory)
-2. **User**, an Actor
-3. **Status**, an Object
+There  is a single node:
+1. **User**, an Actor
 
-And, there are five edges:
-1. **Post**, from User to Status
-2. **Mention**, from Status to User
-3. **Follow**, from User to User
-4. **Like**, from User to Status
-5. **Consume**, from User to both Status and User
+and two edges:
+1. **Like**, a Subscribe 
+2. **Message**, a Mention
+
+### User Parameters
+
+There are 6 mandatory fields and 2 optional ones (8 in total) with the User node:
+
+```
+    username: String! @unique @constraints(regex: "/^[_a-z0-9]{1,18}$/"),
+    email: String!
+    password: String! @md5 @constraints(regex: "/^[a-zA-Z0-9_]{4,12}$/"),
+    birthday: Date @default(String: "01/15/1983"),
+    about: String @constraints(maxLength: 255,) @default(String: ""),
+    avatar: String @constraints(regex: "/^https?\\:\\/\\/.+?\\..+?\\/.+\\.((png)|(jpg)|(gif))$/i")
+    is_premium: Boolean! @default(Boolean: false),
+    join_time: Date! @now
+ ```
